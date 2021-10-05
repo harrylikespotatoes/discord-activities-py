@@ -10,9 +10,9 @@ from datetime import *
 command_prefix=commands.when_mentioned_or('da!')
 client = commands.Bot(command_prefix)
 togetherControl = discordTogether.DiscordTogether(client)
+now = datetime.now()
 
 TOKEN = 'token here'
-
 client.remove_command('help')
 
 @client.event
@@ -21,6 +21,7 @@ async def on_ready():
   print(f"Discord.py API version: {discord.__version__}")
   print(f"Python version: {platform.python_version()}")
   print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
+  print("Bot started at: " + (now.strftime('%H:%M:%S on %a, % the %dth, %Y')))
   print("---------------------")
   global startdate
   startdate = datetime.now()
@@ -59,7 +60,7 @@ owner_id='727484628486848552'
 async def guildids(ctx):
   if ctx.message.author.id == (owner_id):
     for guild in client.guilds:
-      await ctx.send(f"{guild.id}" + ' : ' + f"{guild.name}" + " : " + f"<@{guild.owner.id}>")
+      await ctx.send(f"{guild.id} : {guild.name} : + f"<@{guild.owner.id}>")
   else:
     embed = discord.Embed(
       title="Error!",
@@ -116,7 +117,7 @@ async def startstatustask(ctx):
       statuses = ['Fishington.io', 'Poker', 'Chess in The Park', 'Youtube', 'Betrayal.io']
       await client.change_presence(activity=discord.Game(random.choice(statuses)))
       time.sleep(300)
-      print('status updated')
+      print(f'status updated ({x+1})')
 
 #####################################################################
 
@@ -135,7 +136,7 @@ async def youtube(ctx):
     link = await togetherControl.create_link(ctx.author.voice.channel.id, 'youtube', max_age=60)
     embed = discord.Embed(
         title="Here's your link",
-        description=(f"click the link to start youtube \n{link}" + (f'\n{ctx.message.author.mention}') + (' has requested this command \n ||this link will expire in 1 minute to save resources||')),
+        description=(f"click the link to start youtube \n{link} \n{link}\n{ctx.message.author.mention}"),
         colour=ctx.author.colour
     )
     await ctx.send(embed=embed)
@@ -154,7 +155,7 @@ async def chess(ctx):
     link = await togetherControl.create_link(ctx.author.voice.channel.id, 'chess', max_age=60)
     embed = discord.Embed(
         title="Here's your link",
-        description=(f"click the link to start chess \n{link}" + (f'\n{ctx.message.author.mention}') + (' has requested this command \n ||this link will expire in 1 minute to save resources||')),
+        description=(f"click the link to start chess \n{link}\n{ctx.message.author.mention}"),
         colour=ctx.author.colour
     )
     await ctx.send(embed=embed)
@@ -173,7 +174,7 @@ async def fishington(ctx):
     link = await togetherControl.create_link(ctx.author.voice.channel.id, 'fishing', max_age=60)
     embed = discord.Embed(
         title="Here's your link",
-        description=(f"click the link to start fishington.io \n{link}" + (f'\n{ctx.message.author.mention}') + (' has requested this command \n ||this link will expire in 1 minute to save resources||')),
+        description=(f"click the link to start fishington.io \n{link}\n{ctx.message.author.mention}"),
         colour=ctx.author.colour
     )
     await ctx.send(embed=embed)
@@ -192,7 +193,7 @@ async def poker(ctx):
     link = await togetherControl.create_link(ctx.author.voice.channel.id, 'poker', max_age=60)
     embed = discord.Embed(
         title="Here's your link",
-        description=(f"click the link to start poker \n{link}" + (f'\n{ctx.message.author.mention}') + (' has requested this command \n ||this link will expire in 1 minute to save resources||')),
+        description=(f"click the link to start poker \n{link}\n{ctx.message.author.mention}"),
         colour=ctx.author.colour
     )
     await ctx.send(embed=embed)
@@ -212,7 +213,7 @@ async def betrayal(ctx):
 
     embed = discord.Embed(
         title="Here's your link",
-        description=(f"click the link to start betrayal.io \n{link}" + (f'\n{ctx.message.author.mention}') + (' has requested this command \n ||this link will expire in 1 minute to save resources||')),
+        description=(f"click the link to start betrayal.io \n{link}\n{ctx.message.author.mention}"),
         colour=ctx.author.colour
     )
     await ctx.send(embed=embed)
