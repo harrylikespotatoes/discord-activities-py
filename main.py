@@ -11,7 +11,7 @@ command_prefix=commands.when_mentioned_or('da!')
 client = commands.Bot(command_prefix)
 togetherControl = discordTogether.DiscordTogether(client)
 
-TOKEN = 'ODg5MDE1NTA1MDQwNTk2OTky.YUbGNQ.pailqVpISfWggnT5Zf-PNGsknu0'
+TOKEN = 'token here'
 
 client.remove_command('help')
 
