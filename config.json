@@ -1,5 +1,0 @@
-{
-    "bot_token": "put your bot token here",
-    "owner_id": "put your id here",
-    "command_prefix" : "da!"
-}
