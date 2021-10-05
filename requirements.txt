@@ -1,0 +1,4 @@
+datetime==4.3
+discord-together==1.1.1
+discord.py==1.7.1
+typing-extensions==3.7.4.3
