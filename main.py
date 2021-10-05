@@ -7,12 +7,17 @@ from discord.ext.commands import Bot, BucketType, cooldown, CommandOnCooldown
 import discordTogether
 from datetime import *
 
-command_prefix=commands.when_mentioned_or('da!')
-client = commands.Bot(command_prefix)
+command_prefix=commands.when_mentioned_or(['da!', 'fiejwhuisdbyhuoi prefix here', 'this is a list lewbsfydhiuxojnkb guhyiuh43owjenfksd'])
+#you can put your own prefix here. if you want multiple prefixes, edit the list
+
+TOKEN = 'token here'
+#your bot token here
+#go to https://discord.com/developers and click on your application
+
 togetherControl = discordTogether.DiscordTogether(client)
 now = datetime.now()
 
-TOKEN = 'token here'
+client = commands.Bot(command_prefix)
 client.remove_command('help')
 
 @client.event
@@ -221,4 +226,4 @@ async def betrayal(ctx):
 ###########################################################################
 
 client.run(TOKEN)
-#imagine a place
+#imagine
