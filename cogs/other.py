@@ -46,7 +46,7 @@ class other(commands.Cog):
       await ctx.send(embed=embed)
 
     @commands.command(aliases=['helps', 'commands', 'hi', 'hello'])
-    async def help (ctx):
+    async def help (self, ctx):
         embed = discord.Embed(title='List of all commands',description='`da!help` - shows this message',colour=ctx.author.colour)
         embed.add_field(name="`da!help`", value="shows this message", inline=False),
         embed.add_field(name="`da!youtube`",value="allows you to use youtube on discord \n aliases: yt, youtube.com",inline = True),
