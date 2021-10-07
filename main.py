@@ -1,3 +1,11 @@
+###############################
+
+command_prefix=commands.when_mentioned_or(['da!', 'fiejwhuisdbyhuoi prefix here', 'this is a list lewbsfydhiuxojnkb guhyiuh43owjenfksd'])
+TOKEN = 'token here'
+owner_id='your id here'
+
+###############################
+
 import platform
 import os
 import random
@@ -6,13 +14,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot, BucketType, cooldown, CommandOnCooldown
 import discordTogether
 from datetime import *
-
-command_prefix=commands.when_mentioned_or(['da!', 'fiejwhuisdbyhuoi prefix here', 'this is a list lewbsfydhiuxojnkb guhyiuh43owjenfksd'])
-#you can put your own prefix here. if you want multiple prefixes, edit the list
-
-TOKEN = 'token here'
-#your bot token here
-#go to https://discord.com/developers and click on your application
+from time import *
 
 togetherControl = discordTogether.DiscordTogether(client)
 now = datetime.now()
@@ -28,14 +30,13 @@ async def on_ready():
   print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
   print("Bot started at: " + (now.strftime('%H:%M:%S on %a, % the %dth, %Y')))
   print("---------------------")
-  global startdate
-  startdate = datetime.now()
+  global startTime
+  startTime = time()
 
-@client.command()
-async def uptime(ctx):
-    now = datetime.now()
-    uptime = startdate - now
-    await ctx.send(f'Uptime: {uptime}')
+@client.command(case_insensitive=True)
+async def uptime(ctx, datetime):
+  uptime = str(datetime.timedelta(seconds=int(round(time()-startTime))))
+  await ctx.send(uptime)
 
 #command error handlers
 @client.event
@@ -56,9 +57,6 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=embed)
 
 #########################################################################
-
-#cogs and perms
-owner_id='727484628486848552'
 
 #guild id stuff
 @client.command(aliases=['guilds', 'guild', 'servers', 'server'])
@@ -92,7 +90,7 @@ async def unload(ctx, extension):
     print('unloaded specified cog')
     await ctx.send('Unloaded specified cog.')
   else:
-    await ctx.send("You don't have the permissions required to run this command.")
+    await ctx.send("You don't have the permission to run this command.")
 
 @client.command(aliases=['r'])
 async def reload(ctx, extension):
@@ -102,7 +100,7 @@ async def reload(ctx, extension):
       print('reloaded specified cog')
       await ctx.send('Reloaded specified cog.')
     else:
-      await ctx.send("You don't have the required permissions to run this command.")
+      await ctx.send("You don't have the permission to run this command.")
 
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
@@ -119,10 +117,8 @@ async def startstatustask(ctx):
     print('status task manually started')
     await ctx.send('Status task manually started')
     for i in range(69420):
-      statuses = ['Fishington.io', 'Poker', 'Chess in The Park', 'Youtube', 'Betrayal.io']
-      await client.change_presence(activity=discord.Game(random.choice(statuses)))
+      await client.change_presence(activity=discord.Game('da!help'))
       time.sleep(300)
-      print(f'status updated ({x+1})')
 
 #####################################################################
 
